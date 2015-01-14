@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <http pattern="/script/**" security="none"/>
+    <http pattern="/style/**" security="none"/>
+    <http pattern="/images/**" security="none"/>
+
+    <http auto-config="true">
+
+        <form-login login-page='/#/signin' default-target-url="/user/login_redirect" authentication-failure-url="/#/signin?status=fail"/>
+        <http-basic/>
+        <logout logout-url="/user/signout"/>
+
+        <remember-me key="userKey" token-validity-seconds="2419200"/>
+
+        <intercept-url pattern="/admin/**" access="ROLE_USER"/>
+    </http>
+
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider user-service-ref="userService" >
+            <password-encoder hash="sha"/>
+        </authentication-provider>
+    </authentication-manager>
+
+    <jdbc-user-service id="userService"
+                       data-source-ref="dataSource"
+                       users-by-username-query="select email, password, true from user where email=?"
+                       authorities-by-username-query=
+                               "select email,'ROLE_USER' from user where email=?" />
+
+
+</beans:beans>

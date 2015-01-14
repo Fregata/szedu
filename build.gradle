@@ -1,0 +1,141 @@
+apply plugin: 'groovy'
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'idea'
+
+defaultTasks 'war'
+
+//packageName = 'com.myapp'
+
+jettyRun.contextPath = '/'
+
+def userName = System.getProperty('user.name')
+
+if (version == 'unspecified') {
+	version = 'test_version'
+}
+
+sourceCompatibility = 1.6
+
+repositories {
+	flatDir name:'ExternalJars',dirs:'lib'
+	flatDir name:'TestJars',dirs:'lib/resource'
+	mavenCentral()
+}
+
+compileGroovy {
+	groovyOptions.fork(memoryMaximumSize: '768m')
+}
+
+compileTestGroovy {
+	groovyOptions.fork(memoryMaximumSize: '768m')
+}
+
+configurations {
+	provided
+}
+
+sourceSets.main.compileClasspath += configurations.provided
+
+dependencies {
+	provided group: 'org.apache.tomcat', name: 'el-api', version: '6.0.36', transitive: false
+	provided group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+	provided group: 'jetty', name: 'javax.servlet', version: '5.1.12'
+
+}
+
+String springVersion = '4.0.6.RELEASE'
+String springSecurityVersion = '3.2.4.RELEASE'
+
+dependencies {
+
+
+	compile "org.codehaus.groovy:groovy-all:2.3.3"
+
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+
+	compile group: 'org.hsqldb', name: 'hsqldb', version: '2.3.1'
+
+	compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.2.2'
+	
+	compile group: 'log4j', name: 'log4j', version: '1.2.16', ext: 'jar'
+
+	compile group: 'org.springframework', name: 'spring-beans', version: springVersion
+	compile group: 'org.springframework', name: 'spring-aop', version: springVersion
+
+	compile group: 'org.springframework', name: 'spring-context', version: springVersion
+	compile group: 'org.springframework', name: 'spring-context-support', version: springVersion
+	compile group: 'org.springframework', name: 'spring-core', version: springVersion
+	compile group: 'org.springframework', name: 'spring-expression', version: springVersion
+	compile group: 'org.springframework', name: 'spring-jdbc', version: springVersion
+	compile group: 'org.springframework', name: 'spring-orm', version: springVersion
+	compile group: 'org.springframework', name: 'spring-tx', version: springVersion
+	compile group: 'org.springframework', name: 'spring-web', version: springVersion
+	compile group: 'org.springframework', name: 'spring-webmvc', version: springVersion
+
+	compile group: 'org.springframework.security', name: 'spring-security-core', version: springSecurityVersion
+	compile group: 'org.springframework.security', name: 'spring-security-config', version: springSecurityVersion
+	compile group: 'org.springframework.security', name: 'spring-security-web', version: springSecurityVersion
+	compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth', version: '1.0.1.RELEASE'
+
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '4.3.6.Final'
+	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '4.3.6.Final'
+	compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.1.2.Final'
+	
+	//compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.0-api', version: '1.0.1.Final'
+	compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
+
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.3.0'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.3.0'
+
+	compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3'
+
+	testCompile group: 'org.springframework', name: 'spring-test', version: springVersion
+
+	//testCompile group: 'hsqldb', name: 'hsqldb', version: '1.8.1.3'
+	testCompile group: 'org.hsqldb', name: 'hsqldb', version: '2.3.1'
+
+	testCompile group: 'jetty', name: 'javax.servlet', version: '5.1.12'
+
+	testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+	testCompile "org.spockframework:spock-spring:0.7-groovy-2.0"
+	testCompile "org.mockito:mockito-all:1.9.5"
+
+}
+
+task initapp << {
+
+	println 'init'
+	
+	println 'ss: ' + sourceSets
+	
+	List dirs = []
+	
+	dirs.addAll sourceSets.main.groovy.srcDirs
+	dirs.addAll sourceSets.main.java.srcDirs
+	dirs.addAll sourceSets.test.groovy.srcDirs
+	dirs.addAll sourceSets.test.java.srcDirs
+	
+	dirs << new File(webAppDirName)
+	dirs << new File(webAppDirName + '/WEB-INF/')
+		
+	dirs.each { File dir ->
+		println "mkdir: ${dir.absolutePath}"
+		dir.mkdirs()
+	}
+
+
+	
+
+}
+
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '2.0'
+}
+
+
+
+
+
+

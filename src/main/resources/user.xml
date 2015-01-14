@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users>
+	<user>
+		<name>user1</name>
+		<id>123456</id>
+		<password>123456</password>
+		<roles>
+			<role>
+				<id>111</id>
+				<name>user</name>
+			</role>
+			<role>
+				<id>222</id>
+				<name>admin</name>
+			</role>
+		</roles>
+		<apps>
+			<app>
+				<id>1</id>
+				<name>one</name>
+			</app>
+			<app>
+				<id>2</id>
+				<name>two</name>
+			</app>
+		</apps>
+	</user>
+	<user>
+		<name>user2</name>
+		<id>654321</id>
+		<password>654321</password>
+		<roles>
+			<role>
+				<id>111</id>
+				<name>user</name>
+			</role>
+		</roles>
+		<apps>
+			<app>
+				<id>1</id>
+				<name>one</name>
+			</app>
+		</apps>
+	</user>
+</users>
