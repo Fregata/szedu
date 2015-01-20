@@ -7,15 +7,15 @@ import javax.validation.constraints.NotNull
 
 //-----------------------------------------------------------------
 //CREATE TABLE `subject` (
-//	`subjectid` int(11) NOT NULL COMMENT '¿ÆÄ¿ID',
-//	`subjectcode` varchar(10) NOT NULL COMMENT '¿ÆÄ¿´úÂë CNPS201301-2013½ìĞ¡Ñ§Ò»Äê¼¶ÓïÎÄ,CNHS201402-2014½ì¸ßÖĞ¶şÄê¼¶ÓïÎÄ',
-//	`subjectname` varchar(30) NOT NULL COMMENT '¿ÆÄ¿Ãû³Æ',
-//	`subjectlevel` char(2) DEFAULT 'HS' COMMENT '¿ÆÄ¿¼¶±ğ HS-¸ßÖĞ,MS-³õÖĞ,PS-Ğ¡Ñ§',
-//	`subjectperiod` varchar(4) DEFAULT '2013' COMMENT '¿ÆÄ¿½ì±ğ 2013-2013½ì,2014-2014½ì,2015-2015½ì',
+//	`subjectid` int(11) NOT NULL COMMENT 'ç§‘ç›®ID',
+//	`subjectcode` varchar(10) NOT NULL COMMENT 'ç§‘ç›®ä»£ç  CNPS201301-2013å±Šå°å­¦ä¸€å¹´çº§è¯­æ–‡,CNHS201402-2014å±Šé«˜ä¸­äºŒå¹´çº§è¯­æ–‡',
+//	`subjectname` varchar(30) NOT NULL COMMENT 'ç§‘ç›®åç§°',
+//	`subjectlevel` char(2) DEFAULT 'HS' COMMENT 'ç§‘ç›®çº§åˆ« HS-é«˜ä¸­,MS-åˆä¸­,PS-å°å­¦',
+//	`subjectperiod` varchar(4) DEFAULT '2013' COMMENT 'ç§‘ç›®å±Šåˆ« 2013-2013å±Š,2014-2014å±Š,2015-2015å±Š',
 //	PRIMARY KEY (`subjectid`),
 //	UNIQUE KEY `subjectcode_UNIQUE` (`subjectcode`),
 //	UNIQUE KEY `subjectid_UNIQUE` (`subjectid`)
-//  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='¿ÆÄ¿ ÓïÎÄ,ÊıÑ§,ÍâÓïµÈ';
+//  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ç§‘ç›® è¯­æ–‡,æ•°å­¦,å¤–è¯­ç­‰';
 //-----------------------------------------------------------------
 @Entity
 class Subject {

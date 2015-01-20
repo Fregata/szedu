@@ -9,18 +9,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 
 //-----------------------------------------------------------------
 //CREATE TABLE `admin` (
-//  `adminid` int(11) NOT NULL COMMENT '¹ÜÀíÔ± ID',
-//  `adminname` varchar(18) NOT NULL COMMENT '¹ÜÀíÔ±µÇÂ¼Ãû',
-//  `adminpwd` varchar(6) NOT NULL COMMENT '¹ÜÀíÔ±µÇÂ¼ÃÜÂë',
-//  `adminlevel` char(1) NOT NULL DEFAULT 'P' COMMENT '¹ÜÀíÔ±µÈ¼¶ P-Ê¡¼¶,C-µØÊĞ¼¶,D-ÇøÏØ¼¶,S-Ğ£¼¶',
-//  `adminsuper` varchar(18) DEFAULT NULL COMMENT '¹ÜÀíÔ±µÄÉÏ¼¶¹ÜÀíÔ±Î¨Ò»±êÊ¾·û',
-//  `admintelno` varchar(45) DEFAULT NULL COMMENT '¹ÜÀíÔ±ÁªÏµµç»°',
-//  `adminemail` varchar(45) DEFAULT NULL COMMENT '¹ÜÀíÔ±ÓÊÏäµØÖ·',
-//  PRIMARY KEY (`adminid`),
-//  UNIQUE KEY `adminname_UNIQUE` (`adminname`),
-//  UNIQUE KEY `id_UNIQUE` (`adminid`),
-//  KEY `adminid_idx` (`adminsuper`)
-//) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='¹ÜÀíÔ±-Ê¡¼¶,µØÊĞ¼¶,ÇøÏØ¼¶,Ğ£¼¶';
+//	`adminid` int(11) NOT NULL COMMENT 'ç®¡ç†å‘˜ ID',
+//	`adminname` varchar(18) NOT NULL COMMENT 'ç®¡ç†å‘˜ç™»å½•å',
+//	`adminpwd` varchar(6) NOT NULL COMMENT 'ç®¡ç†å‘˜ç™»å½•å¯†ç ',
+//	`adminlevel` char(1) NOT NULL DEFAULT 'P' COMMENT 'ç®¡ç†å‘˜ç­‰çº§ P-çœçº§,C-åœ°å¸‚çº§,D-åŒºå¿çº§,S-æ ¡çº§',
+//	`adminsuper` varchar(18) DEFAULT NULL COMMENT 'ç®¡ç†å‘˜çš„ä¸Šçº§ç®¡ç†å‘˜å”¯ä¸€æ ‡ç¤ºç¬¦',
+//	`admintelno` varchar(45) DEFAULT NULL COMMENT 'ç®¡ç†å‘˜è”ç³»ç”µè¯',
+//	`adminemail` varchar(45) DEFAULT NULL COMMENT 'ç®¡ç†å‘˜é‚®ç®±åœ°å€',
+//	PRIMARY KEY (`adminid`),
+//	UNIQUE KEY `adminname_UNIQUE` (`adminname`),
+//	UNIQUE KEY `id_UNIQUE` (`adminid`),
+//	KEY `adminid_idx` (`adminsuper`)
+//  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ç®¡ç†å‘˜-çœçº§,åœ°å¸‚çº§,åŒºå¿çº§,æ ¡çº§';
 //-----------------------------------------------------------------
 @Entity
 class Admin {
@@ -50,6 +50,12 @@ class Admin {
 	String adminsuper
 	String admintelno
 	String adminemail
+	
+	@ManyToMany
+	@JoinTable(name="app_admin")
+	@JoinColumn(name="adminid",referencedColumnName="adminid")
+	Set<App> apps
+	
 	
 	static String hash(String string) {
 		return new ShaPasswordEncoder().encodePassword(string,null)

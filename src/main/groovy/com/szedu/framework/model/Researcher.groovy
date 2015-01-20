@@ -1,25 +1,53 @@
 package com.szedu.framework.model
 
+import javax.persistence.*
+import javax.validation.constraints.NotNull
+
 //-----------------------------------------------------------------
 //CREATE TABLE `researcher` (
-//	`researcherid` int(11) NOT NULL COMMENT '½ÌÑĞÔ±ID',
-//	`researchername` varchar(18) NOT NULL COMMENT '½ÌÑĞÔ±µÇÂ¼Ãû',
-//	`researcherpwd` varchar(6) NOT NULL COMMENT '½ÌÑĞÔ±µÇÂ¼ÃÜÂë',
-//	`researcherdirector` char(1) NOT NULL DEFAULT 'N' COMMENT 'ÊÇ·ñÎª½ÌÑĞÖ÷ÈÎ N-²»ÊÇ,Y-ÊÇ',
-//	`researchersubject` int(11) DEFAULT NULL COMMENT 'Íâ¼üÒıÓÃµ½¿ÆÄ¿Î¨Ò»±êÊ¾·û',
-//	`researchersuper` varchar(45) DEFAULT NULL COMMENT '½ÌÑĞÔ±µÄÖ±½Ó¹ÜÀíÔ±µÄadminname',
-//	`researchertelno` varchar(45) DEFAULT NULL COMMENT '½ÌÑĞÔ±ÁªÏµµç»°',
-//	`researcheremail` varchar(45) DEFAULT NULL COMMENT '½ÌÑĞÔ±ÓÊÏäµØÖ·',
-//	`researcheradmin` int(11) DEFAULT NULL COMMENT 'Íâ¼üÒıÓÃµ½¹ÜÀíÔ±ID',
-//	PRIMARY KEY (`researcherid`),
-//	UNIQUE KEY `researchername_UNIQUE` (`researchername`),
-//	UNIQUE KEY `researcherid_UNIQUE` (`researcherid`),
-//	KEY `researchersubject_idx` (`researchersubject`),
-//	KEY `researcheradmin_idx` (`researcheradmin`),
-//	CONSTRAINT `researcheradmin` FOREIGN KEY (`researcheradmin`) REFERENCES `admin` (`adminid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-//	CONSTRAINT `researchersubject` FOREIGN KEY (`researchersubject`) REFERENCES `subject` (`subjectid`) ON DELETE NO ACTION ON UPDATE NO ACTION
-//  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='½ÌÑ§ÑĞ¾¿Ô±';
+//  `researcherid` int(11) NOT NULL COMMENT 'æ•™ç ”å‘˜ID',
+//  `researchername` varchar(18) NOT NULL COMMENT 'æ•™ç ”å‘˜ç™»å½•å',
+//  `researcherpwd` varchar(6) NOT NULL COMMENT 'æ•™ç ”å‘˜ç™»å½•å¯†ç ',
+//  `researcherdirector` char(1) NOT NULL DEFAULT 'N' COMMENT 'æ˜¯å¦ä¸ºæ•™ç ”ä¸»ä»» N-ä¸æ˜¯,Y-æ˜¯',
+//  `researchersubject` int(11) DEFAULT NULL COMMENT 'å¤–é”®å¼•ç”¨åˆ°ç§‘ç›®å”¯ä¸€æ ‡ç¤ºç¬¦',
+//  `researchersuper` varchar(45) DEFAULT NULL COMMENT 'æ•™ç ”å‘˜çš„ç›´æ¥ç®¡ç†å‘˜çš„adminname',
+//  `researchertelno` varchar(45) DEFAULT NULL COMMENT 'æ•™ç ”å‘˜è”ç³»ç”µè¯',
+//  `researcheremail` varchar(45) DEFAULT NULL COMMENT 'æ•™ç ”å‘˜é‚®ç®±åœ°å€',
+//  `researcheradmin` int(11) DEFAULT NULL COMMENT 'å¤–é”®å¼•ç”¨åˆ°ç®¡ç†å‘˜ID',
+//  PRIMARY KEY (`researcherid`),
+//  UNIQUE KEY `researchername_UNIQUE` (`researchername`),
+//  UNIQUE KEY `researcherid_UNIQUE` (`researcherid`),
+//  KEY `researchersubject_idx` (`researchersubject`),
+//  KEY `researcheradmin_idx` (`researcheradmin`),
+//  CONSTRAINT `researcheradmin` FOREIGN KEY (`researcheradmin`) REFERENCES `admin` (`adminid`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+//  CONSTRAINT `researchersubject` FOREIGN KEY (`researchersubject`) REFERENCES `subject` (`subjectid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+//) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='æ•™å­¦ç ”ç©¶å‘˜';
 //-----------------------------------------------------------------
 class Researcher {
+	@Id
+	@Column(unique=true)
+	@NotNull(message = "researcherid is required")
+	int researcherid
+	
+	@Column(unique=true)
+	@NotNull(message = "researchnername is required")
+	String researchername
+	
+	@NotNull(message = "researchnerpwd is required")
+	String researcherpwd
+	
+	@NotNull(message = "researchnername is required")
+	String researcherdirector
 
+	String researchersubject
+	String researchersuper
+	String researchertelno
+	String researcheremail
+	String researcheradmin
+	
+	@ManyToMany
+	@JoinTable(name="app_researcher")
+	@JoinColumn(name="researcherid",referencedColumnName="researcherid")
+	Set<App> apps
+	
 }

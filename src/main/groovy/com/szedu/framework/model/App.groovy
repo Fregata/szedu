@@ -1,37 +1,45 @@
 package com.szedu.framework.model
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
+import javax.persistence.*
 import javax.validation.constraints.NotNull
 
 //-----------------------------------------------------------------
 //CREATE TABLE `app` (
-//	`appid` int(11) NOT NULL COMMENT 'œµÕ≥Œ®“ª±Í æ∑˚',
-//	`appname` varchar(45) NOT NULL COMMENT 'œµÕ≥√˚≥∆',
-//	`appuri` varchar(128) NOT NULL COMMENT 'œµÕ≥¡¥Ω”',
-//	`appdes` tinytext NOT NULL COMMENT 'œµÕ≥ΩÈ…‹',
-//	PRIMARY KEY (`appid`),
-//	UNIQUE KEY `appid_UNIQUE` (`appid`),
-//	UNIQUE KEY `appname_UNIQUE` (`appname`),
-//	UNIQUE KEY `appuri_UNIQUE` (`appuri`)
-//  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ºØ≥…œµÕ≥';
+//  `appid` int(11) NOT NULL COMMENT 'Á≥ªÁªüÂîØ‰∏ÄÊ†áÁ§∫Á¨¶',
+//  `appname` varchar(45) NOT NULL COMMENT 'Á≥ªÁªüÂêçÁß∞',
+//  `appuri` varchar(128) NOT NULL COMMENT 'Á≥ªÁªüÈìæÊé•',
+//  `appdes` tinytext NOT NULL COMMENT 'Á≥ªÁªü‰ªãÁªç',
+//  PRIMARY KEY (`appid`),
+//  UNIQUE KEY `appid_UNIQUE` (`appid`),
+//  UNIQUE KEY `appname_UNIQUE` (`appname`),
+//  UNIQUE KEY `appuri_UNIQUE` (`appuri`)
+//) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ÈõÜÊàêÁ≥ªÁªü';
 //-----------------------------------------------------------------
 @Entity
 class App{
 	
 	@Id
-	@NotNull(message="appid is required")
 	@Column(unique=true)
+	@NotNull(message="appid is required")
 	int appid
 	
-	@NotNull(message="appname is required")
 	@Column(unique=true)
+	@NotNull(message="appname is required")
 	String appname
 	
-	@NotNull(message="appname is required")
 	@Column(unique=true)
+	@NotNull(message="appname is required")
 	String appuri
 	
 	String appdes
+	
+	@ManyToMany
+	@JoinTable(name="app_admin")
+	@JoinColumn(name="appid",referencedColumnName="appid")
+	Set<Admin> admins
+	
+	@ManyToMany
+	@JoinTable(name="app_researcher")
+	@JoinColumn(name="appid",referencedColumnName="appid")
+	Set<Admin> researchers
 }
