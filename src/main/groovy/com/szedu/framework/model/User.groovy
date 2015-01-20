@@ -1,45 +1,32 @@
 package com.szedu.framework.model
 
-class User extends Entity {
-	String name
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.Transient
+import javax.validation.constraints.NotNull
+
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder
+
+import com.fasterxml.jackson.annotation.JsonIgnore
+
+@Entity(name="users")
+class User extends EntityImpl {
+	final static String ACTIVE = "ACTIVE"
+	final static String LOCK = "LOCK"
+	
+	@NotNull(message="Username is required")
+	@Column(unique=true)
+	String username
+	
+	@NotNull(message="Password is required")
 	String password
-	Set<Role> roles
-	Set<Application> apps
 	
-	Role addRole(Long id, String name){
-		Role role = roles.find {r -> r.name == name}
-		role = role ? role : new Role(id:id, name:name);
-		roles << role
-		return role
-	}
+	@JsonIgnore
+	@Transient
+	String confPassword
+	String enable
 	
-	Boolean hasRole(String name){
-		Role role = roles.find {r -> r.name == name}
-		role != null
+	static String hash(String string) {
+		return new ShaPasswordEncoder().encodePassword(string,null)
 	}
-	
-	Set<String> getRoleNames(){
-		Set names
-		roles.each {r -> names << r.name}
-		return names
-	}
-	
-	Application addApp(Long id, String name){
-		Application app = apps.find{a -> a.name== name}
-		app = app ? app : new Application(id:id, name:name)
-		apps << app
-		return app
-	}
-	
-	Boolean hasApp(String name){
-		Application app = apps.find {a -> a.name == name}
-		app != null
-	}
-	
-	Set<String> getAppNames(){
-		Set names
-		apps.each {a -> names << a.name}
-		return names
-	}
-		
 }

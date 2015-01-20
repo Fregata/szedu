@@ -1,19 +1,53 @@
 package com.szedu.framework.controller.login
 
-import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid
 
 import org.apache.log4j.Logger
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.validation.BindingResult
+import org.springframework.web.bind.annotation.*
+
+import com.szedu.framework.controller.BaseController
+import com.szedu.framework.model.User
+import com.szedu.framework.service.UserService;
 
 @Controller
-@RequestMapping(value="/")
-class LoginController {
-	//final Logger log = Logger.getLogger(this.class);
+class LoginController{
+	final Logger log = Logger.getLogger(this.class)
+	@Autowired
+	UserService userService
 	
-	@RequestMapping("/login")
-	String index(HttpServletRequest request){
+	@RequestMapping("/")
+	String index(HttpServletRequest request) {
+		log.debug("root request: ${request.requestURI}")
 		"index"
 	}
 	
+	@RequestMapping(value="/{username}",method = RequestMethod.GET,headers =["Accept=application/json"])
+    @ResponseStatus(HttpStatus.OK)
+	@ResponseBody User get(@PathVariable("username") String username){
+		userService.findUser(username)
+	}
+	
+	@RequestMapping(value="/{username}",method = RequestMethod.POST,headers =["Accept=application/json"])
+	@ResponseBody User update(@PathVariable("username") String username, @RequestBody @Valid User user, BindingResult result){
+		userService.updateUser(user)
+	}
+	
+	
+	User initializeDemoUser(String username,String password) {
+		User user = userService.findUser(username)
+		if(user) return user
+		
+		user = new User(username:username)
+		user.password = User.hash(password)
+		user.enable = "active"
+	
+		userService.saveUser(user)
+		log.debug("CREATED ADMIN: ${user.username}")
+		return user
+	}
 }

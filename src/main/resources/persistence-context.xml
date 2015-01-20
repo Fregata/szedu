@@ -12,11 +12,10 @@
 
 
     <!-- // not currently implemented using PersistenceConfig groovy class -->
-
-    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <bean id="emf" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
-        <property name="packagesToScan" value="com.myapp.model"></property>
+        <property name="packagesToScan" value="com.szedu.framework.model"/>
     </bean>
 
 

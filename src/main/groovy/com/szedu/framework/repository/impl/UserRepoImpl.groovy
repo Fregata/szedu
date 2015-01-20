@@ -1,112 +1,108 @@
 package com.szedu.framework.repository.impl
 
-import org.springframework.stereotype.Repository
+import javax.persistence.EntityManager
+import javax.persistence.EntityManagerFactory
+import javax.persistence.NoResultException
+import javax.persistence.PersistenceContext
+import javax.persistence.PersistenceContextType
+import javax.persistence.Query
 
-import com.szedu.framework.model.Application
-import com.szedu.framework.model.Role
-import com.szedu.framework.model.User
+import org.apache.log4j.Logger
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Repository
+import org.springframework.transaction.annotation.Propagation
+import org.springframework.transaction.annotation.Transactional
+
+import com.szedu.framework.model.EntityImpl
 import com.szedu.framework.repository.UserRepo
 @Repository("userRepo")
+@Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
 class UserRepoImpl implements UserRepo {
-	private Map<Long,User> userMap
+	final Logger log = Logger.getLogger(this.class)
 	
-	UserRepoImpl(){
-		userMap = new HashMap<Long,User>()
-		createDummyData()
+	@PersistenceContext(type=PersistenceContextType.EXTENDED)
+	EntityManager em
+
+	@Transactional(propagation=Propagation.REQUIRED,readOnly = false)
+	public void save(EntityImpl entity) {
+		println "dao level uername = ${entity.class}"
+		if(log.isDebugEnabled()) log.debug("save: ${entity.class}")
+		em.persist(entity)
 	}
-	
-	private void createDummyData(){
-		new XmlSlurper().parse(new File('src/main/resources/user.xml')).each {user -> 
-			User uszr = new User(id:user.@id.toLong(),name:user.@name,password:user.@password)
-			
-			Set<Role> roles = new HashSet<Role>()
-			user.roles.each {role ->
-				roles << new Role(id:role.@id.toLong(),name:role.@name)
-			}
-			
-			Set<Application> apps = new HashSet<Application>()
-			user.apps.each {app ->
-				apps << new Application(app.@id.toLong(),name:app.@name)
-			}
-			
-			uszr.setRoles(roles)
-			uszr.setApps(apps)
-			
-			userMap.put(uszr.id, uszr)
+
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = true)
+	public List<EntityImpl> query(String query) {
+		if(log.isDebugEnabled()) log.debug("query: ${query}")
+		Query q = em.createQuery(query)
+		q.getResultList()
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED,readOnly = false)
+	public EntityImpl merge(EntityImpl entity) {
+		if(log.isDebugEnabled()) log.debug("merge: ${entity.class}")
+		EntityImpl entiry
+		doWithTryCatch {
+			entiry = em.merge(entity)
+			em.flush()	
 		}
-//		for (customer in customers.corporate.customer)
-//		{
-//			println "${customer.@name} works for ${customer.@company}"
-//		}
-	}
-	
-	@Override
-	public User getUser(Long id) {
-		return userMap.get(id)
+		return entiry
 	}
 
-	@Override
-	public void createUser(User user) {
-		userMap.put(user.id, user)
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = true)
+	public EntityImpl find(String query, Map params) {
+		if(log.isDebugEnabled()) log.debug("find: ${query}")
+		try{
+			Query q = em.createQuery(query)
+			params.each {e -> q.setParameter(e.key, e.value)}
+			return q.getResultList()
+		}catch(NoResultException ne){
+			return null
+		}
 	}
-
-	@Override
-	public void removeUser(Long id) {
-		userMap.remove(id)
-	}
-
-	@Override
-	public void updateUser(Long id) {
-		// TODO Auto-generated method stub
 		
+
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly = true)
+	public EntityImpl find(Class clazz, Long id) {
+		if(log.isDebugEnabled()) log.debug("find: class-${clazz} id-${id}")
+		em.find(clazz, id)
 	}
 
-	@Override
-	public Set<Role> getRoles(Long uid) {
-		// TODO Auto-generated method stub
-		return userMap.get(uid).getRoles()
+	@Transactional(propagation=Propagation.REQUIRED,readOnly = false)
+	public void remove(EntityImpl entity) {
+		if(log.isDebugEnabled()) log.debug("remove: class-${entity.class} id-${entity.id}")
+		em.remove(entity)
 	}
 
-	@Override
-	public Role getRole(Long uid, String rName) {
-		// TODO Auto-generated method stub
-		return userMap.get(uid).getRoles().find {r -> r.name == rName}
+	@Transactional(propagation=Propagation.REQUIRED,readOnly = false)
+	public void remove(Collection<EntityImpl> items) {
+		items.each {item -> em.remove(item) }
 	}
 
-	@Override
-	public void addRole(Long uid, Role role) {
-		// TODO Auto-generated method stub
-		userMap.get(uid).getRoles() << role
+	@Transactional(propagation=Propagation.REQUIRED,readOnly = false)
+	public void remove(Class clazz, Long id) {
+		if(log.isDebugEnabled()) log.debug("find: class-${clazz} id-${id}")
+		EntityImpl entity = find(clazz, id)
+		entity != null ? em.remove(entity) : log.error("Item does not exist")
 	}
 
-	@Override
-	public void removeRole(Long uid, String rName) {
-		// TODO Auto-generated method stub
-		userMap.get(uid).getRoles().remove(userMap.get(uid).getRoles().find {r -> r.name == rName})
-	}
+	
+	void doWithTryCatch(Closure c) {
+		
+		try {
+			c()
+		} catch (Throwable t) {
+			log.error("DAO ERROR: ${t.message}",t)
+		}
 
-	@Override
-	public Set<Application> getApps(Long uid) {
-		// TODO Auto-generated method stub
-		return userMap.get(uid).getApps()
 	}
+		
+	@Transactional(propagation=Propagation.REQUIRED,readOnly = false)
+	void flush() {
 
-	@Override
-	public Application getApp(Long uid, String aName) {
-		// TODO Auto-generated method stub
-		return userMap.get(uid).getApps().find {a -> a.name == aName}
-	}
+		doWithTryCatch {
+			em.flush()
+		}
 
-	@Override
-	public void addApp(Long rid, Application app) {
-		// TODO Auto-generated method stub
-		userMap.get(rid).getApps() << app
-	}
-
-	@Override
-	public void removeApp(Long rid, String aName) {
-		// TODO Auto-generated method stub
-		userMap.get(rid).getApps().remove(userMap.get(uid).getApps().find {a -> a.name == aName})
 	}
 
 }
