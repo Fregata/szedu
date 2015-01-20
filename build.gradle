@@ -50,7 +50,7 @@ String springSecurityVersion = '3.2.4.RELEASE'
 dependencies {
 
 
-	compile "org.codehaus.groovy:groovy-all:2.3.3"
+	compile "org.codehaus.groovy:groovy-all:2.3.7"
 
 	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
 
