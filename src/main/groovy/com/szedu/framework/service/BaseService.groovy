@@ -10,6 +10,9 @@ class BaseService {
 	AdminDao adminDao
 	
 	@Autowired
+	UserDao userDao
+	
+	@Autowired
 	ResearcherDao researcherDao
 	
 	@Autowired

@@ -8,11 +8,11 @@
            http://www.springframework.org/schema/security/spring-security.xsd">
 
 
-    <http pattern="/script/**" security="none"/>
-    <http pattern="/style/**" security="none"/>
-    <http pattern="/images/**" security="none"/>
+    <http pattern="/js/**" security="none"/>
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/img/**" security="none"/>
 
-    <http auto-config="true">
+    <!--http auto-config="true">
 
         <form-login login-page='/#/signin' default-target-url="/user/login_redirect" authentication-failure-url="/#/signin?status=fail"/>
         <http-basic/>
@@ -21,7 +21,7 @@
         <remember-me key="userKey" token-validity-seconds="2419200"/>
 
         <intercept-url pattern="/admin/**" access="ROLE_USER"/>
-    </http>
+    </http -->
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userService" >

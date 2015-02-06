@@ -1,14 +1,27 @@
 package com.szedu.framework.controller
 
+import javax.servlet.http.HttpServletRequest
+import javax.validation.ConstraintViolationException
 
+import org.apache.log4j.Logger
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.ResponseStatus
+
+import com.szedu.framework.exception.InputException
+import com.szedu.framework.service.AppManageService
+import com.szedu.framework.service.UserManageService
 
 class BaseController {
-/*
+
     final Logger log = Logger.getLogger(this.class)
 
     @Autowired
-    UserService userService
-
+    AppManageService appService
+	
     @RequestMapping("/")
     String index(HttpServletRequest request) {
         log.debug("root request: ${request.requestURI}")
@@ -45,5 +58,5 @@ class BaseController {
         [message:  "Sever Error: " + exception.message ]
 
     }
-*/
+
 }

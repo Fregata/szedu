@@ -4,6 +4,8 @@ import com.szedu.framework.model.App
 
 interface AppDao {
 
+	List<App> query(String query)
+	
 	App findAppById(int appId)
 	
 	App findAppByName(String appName)
