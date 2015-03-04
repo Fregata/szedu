@@ -1,17 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//dtD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/dtD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
 <%@ page language="java" pageEncoding="UTF-8"%>
-<title>恕之教育应用平台</title>
-<link rel="shortcut icon" href="../img/sz.ico">
-<link rel="stylesheet" href="../css/foundation.css" />
-<link rel="stylesheet" href="../css/szedu.css" />
-<script src="../js/vendor/modernizr.js"></script>
-<script src="../js/vendor/jquery.js"></script>
-<script src="../js/foundation.min.js"></script>
-</head>
-<body>
-<%@ include file="../include/header.jsp"%>
 <div class="row">
   <div class="large-12 columns">
     <div class="panel" style="height:100px;background-color:#008CBA;">
@@ -122,8 +109,3 @@
      
         </div>
       </div>
-       
-    
-<%@ include file="../include/footer.jsp"%>
-</body>
-</html>

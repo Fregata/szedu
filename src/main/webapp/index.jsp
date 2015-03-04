@@ -9,227 +9,142 @@
     <script src="js/vendor/modernizr.js"></script>
   </head>
   <body>
-	<%@ include file="include/header.jsp"%>
-	<div class="row">
-	<div class="small-12  large-12 columns">
-	<div class="slideshow-wrapper">
-	<div class="orbit-container">
-		<ul data-orbit>
-			<li class="active">
-				<img src="img/1389940277237.jpg" style="max-width: 100%" alt="slide 1" title="携手教育"/>
-				<div class="orbit-caption">恕之教育</div>
-			</li>
-			<li>
-				<img src="img/1393858019596.jpg" style="max-width: 100%" alt="slide 12" title="恕之教育" />
-				<div class="orbit-caption">更多应用、更多惊喜</div>
-			</li>
+<div class="container">
+<header>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="blackborder"></div>
+		<div class="blackborder"></div>
+		<div class="blackborder"></div>
+	</div>
+</div>
+
+<div class="row">
+  <div class="small-12 large-12 columns">
+    <div style="height:60px; background-image:url('img/top_bar.png');">
+    	<div class="small-4 large-4 columns">&nbsp;&nbsp;</div>
+    	<div class="small-4 large-4 columns">&nbsp;&nbsp;</div>
+      <div class="small-4 large-4 columns" style="text-align: left;">
+      	<ul class="button-group radius">
+			  <li><a href="#"  id="login" data-reveal-id="loginModal" class="tiny button">登录</a></li>
+				<div id="loginModal" class="reveal-modal" data-reveal>
+				  <h2>This is a modal.</h2>
+				  <p>Reveal makes these very easy to summon and dismiss. The close button is simply an anchor with a unicode character icon and a class of <code>close-reveal-modal</code>. Clicking anywhere outside the modal will also dismiss it.</p>
+				  <p>Finally, if your modal summons another Reveal modal, the plugin will handle that for you gracefully.</p>
+				  <a class="close-reveal-modal">×</a>
+				</div>
+			  <li><a href="#" class="tiny button">注册</a></li>
+			  <li><a href="#" class="tiny button">帮助</a></li>
 		</ul>
-	</div>
-	</div>
-	</div>
-	</div>
-	<br/>	
-	<div class="row">
-		<div class="small-9 large-9 columns">
-			<div class="greenborder"></div>
-			<div class="greenborder"></div>
-			<div class="greenborder"></div>
-			<div class="panel">
-				<div class="row">
-					<div class="small-4 large-4 columns">
-						<ul class="large-block-grid-1 small-block-grid-1" data-dropdown-content>
-							<li>
-								<a href="#" data-dropdown="hover1" data-options="is_hover:true;" aria-expanded="false">
-									<span title="绿色指标">
-										<img data-caption="caption here..." src="img/green.png" alt="组件缩略图" class="th [radius]">
-									</span>
-								</a>
-							</li>
-							<ul id="hover1" class="f-dropdown" data-dropdown-content="" style="position: absolute; left: -99999px; top: 72px;" aria-hidden="true">
-								<li><a href="#">应用概述</a></li>
-								<li><a href="#" target="_blank">免费体验</a></li>
-								<li><a href="#" target="_blank">购买咨询</a></li>
-							</ul>
-						</ul>
-					</div>
-					<div class="small-8 large-8 columns">
-						<ul class="inline-list">
-							<li>
-								<a href="#"><strong>绿色指标应用系统</strong></a>
-							</li>
-							<li style="list-style: none">
-								<br>
-							</li>
-							<li class="bodydate" style="width:100%">
-								<div style="float: left;margin-right:30px;">
-									<font style="font-family:微软雅黑;font-size:13px">收录时间:</font> 2014-02-21 19:29
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+	<div class="small-12 large-12 columns">
+		<div class="contain-to-grid sticky">
+			<nav class="top-bar" data-topbar data-options="sticky_on:large">
+				<section class="top-bar-section">
+					<ul class="left">
+						<li class="divider"></li>
+						<li id="itemclass1" class="active">
+							<a href="#"><div style="font-size: 0.875rem; font-family: 微软雅黑;">首页</div>
+							</a>
+						</li><li class="divider"></li>
+						<li id="itemclass2">
+							<a href="#"><div style="font-size: 0.875rem; font-family: 微软雅黑;">教育资讯</div>
+							</a>
+						</li>
+						<li class="divider"></li>
+						<li id="itemclass3">
+							<a href="#"><div style="font-size: 0.875rem; font-family: 微软雅黑;">应用系统</div>
+							</a>
+						</li>
+						<li class="divider"></li>
+						<li id="itemclass4">
+							<a href="#"><div style="font-size: 0.875rem; font-family: 微软雅黑;">成功案例</div>
+							</a>
+						</li>
+						<li class="divider"></li>
+						<li id="itemclass5">
+							<a href="#"><div style="font-size: 0.875rem; font-family: 微软雅黑;">管理员空间</div>
+							</a>
+						</li>
+						<li id="itemclass100" style="margin-left:140px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+					</ul>
+					<ul>
+						<li class="has-form">
+							<input type="hidden" name="searchPage" value="1" />
+							<div class="row collapse">
+								<div class="large-10 small-10 columns">
+									<input type="text" placeholder="搜索:应用、案例、资讯" style="width:240px;" value="" name="searchContent"/>
 								</div>
-								<div>
-									<font style="font-family:微软雅黑;font-size:13px">贡献者:<a href="#">jeesite团队</a></font>
-								</div>
-							</li>
-							<li class="widget">JeeSite基于Apache 2开源协议，是一个轻量级的，简单易学的开源企业信息管理系统基础框架。主要定位于“企业信息管理”领域，可用作企业信息管理类系统、网站后台管理类系统等。
-							</li>
-							<br>
-							<li style="float: left">
-								<a href="#"><span class="num"><img alt="评论数" src="img/comment.png"><font style="font-family:微软雅黑">评论数</font>(0)</span></a>
-							</li>
-							<li style="float: right">
-								<a href="#"><span class="num"><img alt="体验累计" src="img/book.png"><font style="font-family:微软雅黑">体验累计</font>(2)</span></a>
-							</li>
-							<li style="float: right">
-								<a href="#"><span class="num"><img alt="购买累计" src="img/download.png"><font style="font-family:微软雅黑">购买累计</font>(13759)</span></a>
-							</li>
-							<hr>
-						</ul>
-					</div>
-				</div>
-				<div class="row">
-					<div class="small-4 large-4 columns">
-						<ul class="large-block-grid-1 small-block-grid-1" data-dropdown-content>
-							<li>
-								<a href="#" data-dropdown="hover2" data-options="is_hover:true;" aria-expanded="false">
-									<span title="体质检测">
-										<img data-caption="caption here..." src="img/1397738564735.png" alt="组件缩略图" class="th [radius]">
-									</span>
-								</a>
-							</li>
-							<ul id="hover2" class="f-dropdown" data-dropdown-content="" style="position: absolute; left: -99999px; top: 72px;" aria-hidden="true">
-								<li><a href="#">应用概述</a></li>
-								<li><a href="#" target="_blank">免费体验</a></li>
-								<li><a href="#" target="_blank">购买咨询</a></li>
-							</ul>
-						</ul>
-					</div>
-					<div class="small-8 large-8 columns">
-						<ul class="inline-list">
-							<li>
-								<a href="#"><strong>体质监测应用系统</strong></a>
-							</li>
-							<br>
-							<li class="bodydate" style="width:100%">
-								<div style="float: left;margin-right:30px;">
-									<font style="font-family:微软雅黑;font-size:13px">收录时间:</font> 2014-02-21 19:29
-								</div>
-								<div>
-									<font style="font-family:微软雅黑;font-size:13px">贡献者:<a href="#">jeesite团队</a></font>
-								</div>
-							</li>
-							<li class="widget">JeeSite基于Apache 2开源协议，是一个轻量级的，简单易学的开源企业信息管理系统基础框架。主要定位于“企业信息管理”领域，可用作企业信息管理类系统、网站后台管理类系统等。
-							</li>
-							<li style="list-style: none">
-								<br>
-							</li>
-							<li style="float: left">
-								<a href="#"><span class="num"><img alt="评论数" src="img/comment.png"><font style="font-family:微软雅黑">评论数</font>(0)</span></a>
-							</li>
-							<li style="float: right">
-								<a href="#"><span class="num"><img alt="体验累计" src="img/book.png"><font style="font-family:微软雅黑">体验累计</font>(2)</span></a>
-							</li>
-							<li style="float: right">
-								<a href="#"><span class="num"><img alt="购买累计" src="img/download.png"><font style="font-family:微软雅黑">购买累计</font>(13759)</span></a>
-							</li>
-							<hr>
-						</ul>
-					</div>
-				</div>
-				<div class="row">
-					<div class="small-4 large-4 columns">
-						<ul class="large-block-grid-1 small-block-grid-1" data-dropdown-content>
-							<li>
-								<a href="#" data-dropdown="hover3" data-options="is_hover:true;" aria-expanded="false">
-									<span title="问卷调查">
-										<img data-caption="caption here..." src="img/1408875399720.png" alt="组件缩略图" class="th [radius]">
-									</span>
-								</a>
-							</li>
-							<ul id="hover3" class="f-dropdown" data-dropdown-content="" style="position: absolute; left: -99999px; top: 72px;" aria-hidden="true">
-								<li><a href="#">应用概述</a></li>
-								<li><a href="#" target="_blank">免费体验</a></li>
-								<li><a href="#" target="_blank">购买咨询</a></li>
-							</ul>
-						</ul>
-					</div>
-					<div class="small-8 large-8 columns">
-						<ul class="inline-list">
-							<li>
-								<a href="#"><strong>问卷调查应用系统</strong></a>
-							</li>
-							<br>
-							<li class="bodydate" style="width:100%">
-								<div style="float: left;margin-right:30px;">
-									<font style="font-family:微软雅黑;font-size:13px">收录时间:</font> 2014-02-21 19:29
-								</div>
-								<div>
-									<font style="font-family:微软雅黑;font-size:13px">贡献者:<a href="#">jeesite团队</a></font>
-								</div>
-							</li>
-							<li class="widget">JeeSite基于Apache 2开源协议，是一个轻量级的，简单易学的开源企业信息管理系统基础框架。主要定位于“企业信息管理”领域，可用作企业信息管理类系统、网站后台管理类系统等。
-							</li>
-							<li style="list-style: none">
-								<br>
-							</li>
-							<li style="float: left">
-								<a href="#"><span class="num"><img alt="评论数" src="img/comment.png"><font style="font-family:微软雅黑">评论数</font>(0)</span></a>
-							</li>
-							<li style="float: right">
-								<a href="#"><span class="num"><img alt="体验累计" src="img/book.png"><font style="font-family:微软雅黑">体验累计</font>(2)</span></a>
-							</li>
-							<li style="float: right">
-								<a href="#"><span class="num"><img alt="购买累计" src="img/download.png"><font style="font-family:微软雅黑">购买累计</font>(13759)</span></a>
-							</li>
-							<hr>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="small-3 large-3 columns">
-			<div class="greenborder"></div>
-			<div class="greenborder"></div>
-			<div class="greenborder"></div>
-			<ul class="pricing-table" title="教育资讯">
-				<li class="title">
-					<img alt="img/H+_green.png" src="img/H+_green.png">教育热点资讯
-				</li>
-				<li class="bullet-item" style="text-align: left;">
-					<a href="#" title="大数据"><img src="img/black_point.png">&nbsp;&nbsp;大数据</a>
-				</li>
-				<li class="bullet-item"  style="text-align: left;">
-					<a href="#" title="云计算"><img src="img/black_point.png">&nbsp;&nbsp;云计算</a>
-				</li>
-				<li class="bullet-item" style="text-align: left;">
-					<a href="#" title="企业架构"><img src="img/black_point.png">&nbsp;&nbsp;企业架构</a>
-				</li>
-				<li class="bullet-item"  style="text-align: left;">
-					<a href="#" title="移动开发"><img src="img/black_point.png">&nbsp;&nbsp;移动开发</a>
-				</li>
-				<li class="bullet-item" style="text-align: left;">
-					<a href="#" title="项目管理"><img src="img/black_point.png">&nbsp;&nbsp;项目管理</a>
-				</li>
-				<li class="bullet-item" style="text-align: left;">
-					<a href="#" title="操作系统"><img src="img/black_point.png">&nbsp;&nbsp;操作系统</a>
-				</li>
-				<li class="bullet-item" style="text-align: left;">
-					<a href="#" title="通讯类"><img src="img/black_point.png">&nbsp;&nbsp;通讯类</a>
-				</li>
-			</ul>
+								<div class="large-2 small-2 columns"><a href="#" class="alert button expand">搜索</a></div>
+							</div>
+						</li>
+					</ul>
+				</section>
+			</nav>
 		</div>
 	</div>
-	<%@ include file="include/footer.jsp"%>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script>
-	$(document).foundation({
-		orbit : {
-			animation : 'slide',
-			timer_speed : 10000,
-			pause_on_hover : true,
-			stack_on_small : false,
-			navigation_arrows : true,
-			bullets : false
-		}
+</div>
+</header>
+</div>
+<div id="content">
+
+</div>
+<%@ include file="include/footer.jsp"%>
+<script src="js/vendor/jquery.js"></script>
+<script src="js/foundation.min.js"></script>
+<script>
+$(document).ready(function(){
+	clearStyle();
+	$("#itemclass1").addClass("active");
+	$("#content").load("${pageContext.request.contextPath}/common/home.jsp");  
+  $("#itemclass1").click(function(){
+	  clearStyle();
+	  $("#itemclass1").addClass("active");
+	  $("#content").load("${pageContext.request.contextPath}/common/home.jsp"); 
+  });
+  $("#itemclass2").click(function(){
+	  clearStyle();
+	  $("#itemclass2").addClass("active");
+	  $("#content").load("${pageContext.request.contextPath}/common/edu-news.jsp"); 
+  });
+
+  $("#itemclass3").click(function(){
+	  clearStyle();
+	  $("#itemclass3").addClass("active");
+	  $("#content").load("${pageContext.request.contextPath}/common/app-summary.jsp"); 
+  });
+
+  $("#itemclass4").click(function(){
+	  clearStyle();
+	  $("#itemclass4").addClass("active");
+	  $("#content").load("${pageContext.request.contextPath}/common/success-demo.jsp"); 
+  });
+
+  $("#itemclass5").click(function(){
+	  clearStyle();
+	  $("#itemclass5").addClass("active");
+	  $("#content").load("${pageContext.request.contextPath}/admin/manage.jsp"); 
+  });
+
+	$('#login').click(function() {
+	  $('#loginModal').foundation('reveal','open');
 	});
-    </script>
-  </body>
+	
+	$('a.close-reveal-modal').click(function() {
+	  $('#loginModal').foundation('reveal', 'close');
+	});
+});
+function clearStyle(){
+	$("#itemclass1").removeClass("active");
+	$("#itemclass2").removeClass("active");
+	$("#itemclass3").removeClass("active");
+	$("#itemclass4").removeClass("active");
+	$("#itemclass5").removeClass("active");
+};
+</script>
+</body>
 </html>

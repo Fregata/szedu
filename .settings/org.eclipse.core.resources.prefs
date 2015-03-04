@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+encoding//src/main/webapp/admin/all-app.jsp=UTF-8
+encoding//src/main/webapp/admin/buy-app.jsp=UTF-8
+encoding//src/main/webapp/admin/create-admin.jsp=UTF-8
+encoding//src/main/webapp/admin/create-researcher.jsp=UTF-8
+encoding//src/main/webapp/admin/create-subject.jsp=UTF-8
+encoding//src/main/webapp/admin/update-subject.jsp=UTF-8
+encoding//src/main/webapp/common=ISO-8859-1
+encoding//src/main/webapp/common/home.jsp=UTF-8
+encoding//src/main/webapp/include/footer.jsp=UTF-8
+encoding//src/main/webapp/include/header.jsp=UTF-8
+encoding//src/main/webapp/system/sys-apps.jsp=UTF-8
+encoding//src/main/webapp/system/sys-comments.jsp=UTF-8
+encoding//src/main/webapp/system/sys-news.jsp=UTF-8
+encoding//src/main/webapp/system/sys-users.jsp=UTF-8
+encoding/<project>=UTF-8

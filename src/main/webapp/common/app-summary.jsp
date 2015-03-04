@@ -1,17 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//dtD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/dtD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
 <%@ page language="java" pageEncoding="UTF-8"%>
-<title>恕之教育应用平台</title>
-<link rel="shortcut icon" href="../img/sz.ico">
-<link rel="stylesheet" href="../css/foundation.css" />
-<link rel="stylesheet" href="../css/szedu.css" />
-<script src="../js/vendor/modernizr.js"></script>
-<script src="../js/vendor/jquery.js"></script>
-<script src="../js/foundation.min.js"></script>
-</head>
-<body>
-<%@ include file="../include/header.jsp"%>
+<div id="appContent">
 <div class="row">
   <div class="large-12 columns">
     <div class="panel" style="height:100px;background-color:#008CBA;">
@@ -19,110 +7,66 @@
     </div>
   </div>
 </div>
-      
-      <div class="row">
-        <div class="large-12 columns">
-          <div class="row">
-            <div class="large-4 small-12 columns">
-              <img src="http://placehold.it/500x500&text=Logo">
-              <div class="hide-for-small panel">
-                <h3>Header</h3>
-                <h5 class="subheader">Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum odio ornare sagittis.
-                </h5>
-              </div>
-     
-              <a href="#">
-              <div class="panel callout radius">
-                <h6>99  items in your cart</h6>
-              </div>
-              </a>
-     
-            </div>
-            <div class="large-8 columns">
-              <div class="row">
-     
-                <div class="large-4 small-6 columns">
-                  <img src="http://placehold.it/1000x1000&text=Thumbnail">
-     
-                  <div class="panel">
-                    <h5>Item Name</h5>
-                    <h6 class="subheader">$000.00</h6>
-                  </div>
-                </div>
-     
-                <div class="large-4 small-6 columns">
-                  <img src="http://placehold.it/500x500&text=Thumbnail">
-     
-                  <div class="panel">
-                    <h5>Item Name</h5>
-                    <h6 class="subheader">$000.00</h6>
-                  </div>
-                </div>
-     
-                <div class="large-4 small-6 columns">
-                  <img src="http://placehold.it/500x500&text=Thumbnail">
-     
-                  <div class="panel">
-                    <h5>Item Name</h5>
-                    <h6 class="subheader">$000.00</h6>
-                  </div>
-                </div>
-     
-                <div class="large-4 small-6 columns">
-                  <img src="http://placehold.it/500x500&text=Thumbnail">
-     
-                  <div class="panel">
-                    <h5>Item Name</h5>
-                    <h6 class="subheader">$000.00</h6>
-                  </div>
-                </div>
-     
-                <div class="large-4 small-6 columns">
-                  <img src="http://placehold.it/500x500&text=Thumbnail">
-     
-                  <div class="panel">
-                    <h5>Item Name</h5>
-                    <h6 class="subheader">$000.00</h6>
-                  </div>
-                </div>
-     
-                <div class="large-4 small-6 columns">
-                  <img src="http://placehold.it/500x500&text=Thumbnail">
-     
-                  <div class="panel">
-                    <h5>Item Name</h5>
-                    <h6 class="subheader">$000.00</h6>
-                  </div>
-                </div>
-              </div>
-     
-              <div class="row">
-                <div class="large-12 columns">
-                  <div class="panel">
-                    <div class="row">
-     
-                      <div class="large-2 small-6 columns">
-                        <img src="http://placehold.it/300x300&text=Site Owner">
-                      </div>
-     
-                      <div class="large-10 small-6 columns">
-                        <strong>This Site Is Managed By<hr/></strong>
-                        Risus ligula, aliquam nec fermentum vitae, sollicitudin eget urna. Donec dignissim nibh fermentum odio ornare sagittis
-                      </div>
-     
-                    </div>
-                  </div>
-                </div>
-     
-         
-     
-              </div>
-            </div>
-          </div>
-     
-        </div>
-      </div>
+
+
+<div class="row">
+  <div class="large-12 columns">
+   
+    <div class="row">
     
-<%@ include file="../include/footer.jsp"%>
-</body>
-</html>
+      <div class="large-4 small-12 columns">
+        <a href="#" onclick="loadDetail('app01')"><img src="img/green1.png"></a>
+        <div class="hide-for-small panel">
+          <h3>绿色指标</h3>
+          <h8 class="subheader">JeeSite基于Apache 2开源协议，是一个轻量级的，简单易学的开源企业信息管理系统基础框架。主要定位于“企业信息管理”领域，可用作企业信息管理类系统、网站后台管理类系统等.
+          </h8>
+        </div>
+
+        <a href="#">
+        <div class="panel callout radius">
+          <h6>免费试用</h6>
+        </div>
+        </a>
+      </div>
+      
+      <div class="large-4 small-12 columns">
+        <a href="#" onclick="loadDetail('app02')"><img src="img/green1.png"></a>
+        <div class="hide-for-small panel">
+          <h3>体质检测</h3>
+          <h8 class="subheader">JeeSite基于Apache 2开源协议，是一个轻量级的，简单易学的开源企业信息管理系统基础框架。主要定位于“企业信息管理”领域，可用作企业信息管理类系统、网站后台管理类系统等.
+          </h8>
+        </div>
+
+        <a href="#">
+        <div class="panel callout radius">
+          <h6>免费试用</h6>
+        </div>
+        </a>
+      </div>
+      
+      <div class="large-4 small-12 columns">
+        <a href="#" onclick="loadDetail('app03')"><img src="img/green1.png"></a>
+        <div class="hide-for-small panel">
+          <h3>作业系统</h3>
+          <h8 class="subheader">JeeSite基于Apache 2开源协议，是一个轻量级的，简单易学的开源企业信息管理系统基础框架。主要定位于“企业信息管理”领域，可用作企业信息管理类系统、网站后台管理类系统等.
+          </h8>
+        </div>
+
+        <a href="#">
+        <div class="panel callout radius">
+          <h6>免费试用</h6>
+        </div>
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</div>
+<script>
+function loadDetail(item){
+	var url = "${pageContext.request.contextPath}/common/"+item+"-detail.jsp";
+	$("#appContent").html="";
+	$("#appContent").load(url);
+}
+</script>

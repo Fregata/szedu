@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//dtD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/dtD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,11 +28,6 @@
 						</li><li class="divider"></li>
 						<li id="item-apps">
 							<a href="#"><div style="font-size: 0.875rem; font-family: 微软雅黑;">应用系统管理</div>
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li id="item-comments">
-							<a href="#"><div style="font-size: 0.875rem; font-family: 微软雅黑;">评价管理</div>
 							</a>
 						</li>
 						<li class="divider"></li>
@@ -102,12 +98,6 @@ $(document).ready(function(){
       $("#main").load("${pageContext.request.contextPath}/system/sys-apps.jsp");
   });
 
-  $("#item-comments").click(function(){
-	  clearStyle();
-	  $("#item-comments").addClass("active");
-      $("#main").load("${pageContext.request.contextPath}/system/sys-comments.jsp");
-  });
-
   $("#item-users").click(function(){
 	  clearStyle();
 	  $("#item-users").addClass("active");
@@ -118,14 +108,8 @@ $(document).ready(function(){
 function clearStyle(){
 	 $("#item-news").removeClass("active");
 	 $("#item-apps").removeClass("active");
-	 $("#item-comments").removeClass("active");
 	 $("#item-users").removeClass("active");
 };
 </script>
-<script src="../js/angularjs/angular.js"></script>
-<script src="../js/angularjs/angular-route.js"></script>
-<script src="../js/angularjs/angular-resource.js"></script>
-<script src="../js/angularjs/sys-user.js"></script>
-<script src="../js/angularjs/sys-users-controller.js"></script>
 </body>
 </html>

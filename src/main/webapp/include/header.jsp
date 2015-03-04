@@ -62,11 +62,6 @@
 						</li>
 						<li class="divider"></li>
 						<li id="itemclass5">
-							<a href="${pageContext.request.contextPath}/common/partner.jsp"><div style="font-size: 0.875rem; font-family: 微软雅黑;">合作伙伴</div>
-							</a>
-						</li>
-						<li class="divider"></li>
-						<li id="itemclass6">
 							<a href="${pageContext.request.contextPath}/admin/manage.jsp"><div style="font-size: 0.875rem; font-family: 微软雅黑;">管理员空间</div>
 							</a>
 						</li>
@@ -88,6 +83,5 @@
 		</div>
 	</div>
 </div>
-<div id="myModal1" class="reveal-modal small" data-reveal="" style="width: 600px; height: 430px; float: center">4</div>
 </header>
 </div>

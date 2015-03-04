@@ -39,7 +39,7 @@ class UserDaoImpl extends BaseDaoImpl implements UserDao {
 		em.find(clazz, adminId);
 	}
 
-	@Transactional(propagation=Propagation.SUPPORTS,readOnly = true)
+	@Transactional(propagation=Propagation.REQUIRED,readOnly = false)
 	public void updateAdmin(Admin admin) {
 		em.merge(admin);
 	}

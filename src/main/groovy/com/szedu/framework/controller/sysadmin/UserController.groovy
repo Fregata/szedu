@@ -1,6 +1,7 @@
 package com.szedu.framework.controller.sysadmin
 
 import javax.annotation.PostConstruct
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,46 +19,66 @@ import com.szedu.framework.controller.BaseController
 import com.szedu.framework.model.Admin
 import com.szedu.framework.service.UserManageService;
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/sys/user")
 class UserController extends BaseController {
 	
 	@Autowired
 	UserManageService userService
 	
 	@RequestMapping(method=RequestMethod.GET)
-    @ResponseBody List list() {
+    @ResponseBody List<Admin> list() {
         userService.listAdmin()
     }
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	@ResponseBody Admin get(@PathVariable Integer id) {
-		userService.findAdmin(Admin.class, id)
+	@ResponseBody Admin get(@PathVariable String id) {
+		userService.findAdmin(Admin.class, id.toInteger())
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
-	@ResponseBody Admin create(@RequestBody @Valid Admin admin, BindingResult result) {
-		if(result.hasErrors())
-			throw new BindException(result)
-			
-		admin.adminpwd = Admin.hash(admin.adminpwd)
-		admin.adminlevel = Admin.LEVEL_PROVENCE
+	@RequestMapping(value="/add", method=RequestMethod.POST)
+	@ResponseBody List<Admin> create(HttpServletRequest request) {
+		
+		String id = request.getParameter("id")
+		String name = request.getParameter("name")
+		String pwd = Admin.hash(request.getParameter("pwd"))
+		String tel = request.getParameter("tel")
+		String mail = request.getParameter("mail")+".com"
+		String level = Admin.LEVEL_PROVENCE
+		
+		Admin admin = new Admin(
+			adminid: id.toInteger(), 
+			adminname: name, 
+			adminpwd: pwd,
+			adminlevel:level,
+			admintelno:tel,
+			adminemail:mail)
 		userService.save(admin)
-		return admin
+		userService.listAdmin()
 	}
 	
-	@RequestMapping(value="/{id}",method=RequestMethod.POST)
-	@ResponseBody Admin update(@RequestBody @Valid Admin admin, @PathVariable Integer id, BindingResult result) {
-		if(result.hasErrors())
-			throw new BindException(result)
-
+	@RequestMapping(value="/upt",method=RequestMethod.POST)
+	@ResponseBody List<Admin> update(HttpServletRequest request) {
+		String id = request.getParameter("id")
+		String name = request.getParameter("name")
+		String pwd = Admin.hash(request.getParameter("pwd"))
+		String tel = request.getParameter("tel")
+		String mail = request.getParameter("mail")+".com"
+		
+		Admin admin = userService.findAdmin(Admin.class, id.toInteger())
+		admin.setAdminname(name)
+		admin.setAdminpwd(pwd)
+		admin.setAdmintelno(tel)
+		admin.setAdminemail(mail)
+		
 		userService.updateAdmin(admin)
-		return admin
+		userService.listAdmin()
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
-	void delete(@PathVariable Integer id) {
-		userService.deleteAdmin(Admin.class, id)
+	@ResponseBody List<Admin> delete(@PathVariable String id) {
+		userService.deleteAdmin(Admin.class, id.toInteger())
+		userService.listAdmin()
 	}
 	
 	//@PostConstruct
